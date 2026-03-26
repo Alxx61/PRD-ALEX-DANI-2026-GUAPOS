@@ -17,7 +17,11 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>carpeta.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>organitzador.c</itemPath>
+      <itemPath>tasca.c</itemPath>
+      <itemPath>tests.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -41,15 +45,23 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="carpeta.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="carpeta.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="main.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="organitzador.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="organitzador.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tasca.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="tasca.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -74,15 +86,23 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="carpeta.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="carpeta.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="main.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="organitzador.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="organitzador.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tasca.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="tasca.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests.h" ex="false" tool="3" flavor2="0">
       </item>
