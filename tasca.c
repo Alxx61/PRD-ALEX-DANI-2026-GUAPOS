@@ -4,8 +4,18 @@
 
 t_comentari llegeix_nou_comentari(){
 
-    printf("")
+    t_comentari comentari;
+    printf("Text del nou comentari: ");
+    
+    fgets(comentari.text, MAX_C, stdin);
+    
+    if (strlen(comentari.text) > MAX_C){
+        printf("Masses caracters (Màxim 100)");
+    }else{
+        return comentari;
+    }
 }
+
 
 void mostra_comentari(t_comentari com){
     printf("Comentaris: ");
