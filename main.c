@@ -19,7 +19,7 @@ int main(int argc, char** argv)
     printf("***********************************************\n\n");
     
     /* Completar codi de la funció main() */
-    tests_tasca1();
+    
     printf("Finalitzant l'aplicacio... Adeu!\n");
     return (EXIT_SUCCESS);
 }
