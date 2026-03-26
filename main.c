@@ -46,3 +46,5 @@ void llegeix_text(char text[MAX_C])
     if (strlen(text) > 0)
         text[strlen(text)-1] = '\0';
 }
+
+//tontoooo
