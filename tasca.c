@@ -8,7 +8,8 @@ t_comentari llegeix_nou_comentari(){
 }
 
 void mostra_comentari(t_comentari com){
-
+    printf("Comentaris: ");
+    printf("%s\n",com.text); 
 }
 
 t_tasca llegeix_nova_tasca(){
