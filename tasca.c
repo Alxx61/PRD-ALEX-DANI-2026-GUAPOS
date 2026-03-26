@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "tasca.h"
+#include <string.h>
 
 t_comentari llegeix_nou_comentari(){
 
@@ -45,7 +46,7 @@ void mostra_tasca(t_tasca tas){
     printf("Prioritat de la tasca: %d\n",tas.prioritat);
     if (tas.ncomentaris > 0){
         for (i = 0; i < tas.ncomentaris; i++)
-            printf("%d. %s\n",i+1,tas.comentaris[i]);
+            printf("%d. %s\n",i+1,tas.comentaris[i].text);
         
         
     }
@@ -54,7 +55,7 @@ void mostra_tasca(t_tasca tas){
 
 int insereix_comentari(t_tasca *tas, t_comentari com){
     if (tas->ncomentaris < MAX_COM) {
-        tas->comentaris[tas->ncomentaris] = com.text;
+        tas->comentaris[tas->ncomentaris] = com;
         tas->ncomentaris++;
         printf("Comentari inserit correctament. \n");
         return (0);
@@ -68,7 +69,7 @@ int insereix_comentari(t_tasca *tas, t_comentari com){
 int elimina_comentari(t_tasca *tas, int num){
 
     if (num >= 0 && num < MAX_COM) {
-        tas->comentaris[num - 1] = "\0";
+        tas->comentaris[num - 1] = ""; // S'HAN DE MOURE ELS RESTANTS n-1 POS TODO
         tas->ncomentaris--;
         printf("Comentari inserit correctament. \n");
         return(0);
