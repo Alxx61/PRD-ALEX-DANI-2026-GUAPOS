@@ -11,6 +11,7 @@ void tests_tasca2();
 
 void tests_carpeta1();
 void tests_carpeta2();
+void tests_carpeta2_1();
 void tests_carpeta3();
 
 void tests_organitzador1();
