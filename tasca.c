@@ -68,21 +68,23 @@ int insereix_comentari(t_tasca *tas, t_comentari com){
 
 int elimina_comentari(t_tasca *tas, int num){ //tasca.comentaris --> array de comentaris 
 
-    if (num >= 0 && num < MAX_COM) {
-        
-        int i=0;
-        
-        for (i = num; i < MAX_COM-1; i++)
-            tas->comentaris[i-1] = tas->comentaris[i];        
-        
-        tas->ncomentaris--;
-        printf("Comentari eliminat correctament. \n");
-        return(0);
+    
+    int i = 0;
+    while (num <= 0 || num > MAX_COM) {
+
+        printf("\nValor incorrecte, trii un nou valor: ");
+        scanf("%d%*c",&num);
     }
-    else{
-        printf("No s'ha pogut inserir");
-        return(-1);
- 
-    }
+
+  
+
+    for (i = num; i < MAX_COM - 1; i++)
+        tas->comentaris[i - 1] = tas->comentaris[i];
+
+    tas->ncomentaris--;
+    printf("Comentari eliminat correctament. \n");
+    return (0);
+
+
 
 }
