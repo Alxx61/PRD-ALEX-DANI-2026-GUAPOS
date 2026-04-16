@@ -26,7 +26,7 @@ void mostra_comentari(t_comentari com){
 t_tasca llegeix_nova_tasca(){
     t_tasca tasca;
     printf("\nTitol de la nova tasca: ");
-    fgets(tasca.titol,MAX_C,stdin); // NEWLINE ES QUEDA AL FINAL DE EL STRING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    fgets(tasca.titol,MAX_C,stdin); 
     printf("\nPrioritat de la nova tasca (entre [1,3]): ");
     scanf("%d%*c",&tasca.prioritat);
     while (tasca.prioritat <= 0 || tasca.prioritat >= 4){
@@ -75,8 +75,6 @@ int elimina_comentari(t_tasca *tas, int num){ //tasca.comentaris --> array de co
         printf("\nValor incorrecte, trii un nou valor: ");
         scanf("%d%*c",&num);
     }
-
-  
 
     for (i = num; i < MAX_COM - 1; i++)
         tas->comentaris[i - 1] = tas->comentaris[i];
