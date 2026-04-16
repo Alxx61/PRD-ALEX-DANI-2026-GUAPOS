@@ -30,7 +30,7 @@ t_tasca llegeix_nova_tasca(){
     printf("\nPrioritat de la nova tasca (entre [1,3]): ");
     scanf("%d%*c",&tasca.prioritat);
     while (tasca.prioritat <= 0 || tasca.prioritat >= 4){
-        printf("\nValor incorrecte\n");
+        printf("\nValor incorrecte, introdueix un nou valor: ");
         scanf("%d%*c",&tasca.prioritat);
         
     }
