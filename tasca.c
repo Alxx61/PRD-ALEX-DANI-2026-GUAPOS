@@ -11,7 +11,7 @@ t_comentari llegeix_nou_comentari(){
     fgets(comentari.text, MAX_C, stdin);
     
     if (strlen(comentari.text) > MAX_C){
-        printf("Masses caracters (Màxim 100)");
+        printf("Masses caracters (Màxim 100)\n");
     }else{
         return comentari;
     }
@@ -35,7 +35,7 @@ t_tasca llegeix_nova_tasca(){
         
     }
     tasca.ncomentaris = 0;
-    printf("\nTasca inserida correctament. ");
+    printf("Tasca inserida correctament. \n");
     return(tasca);
 }
 
@@ -66,12 +66,17 @@ int insereix_comentari(t_tasca *tas, t_comentari com){
     }
 }
 
-int elimina_comentari(t_tasca *tas, int num){
+int elimina_comentari(t_tasca *tas, int num){ //tasca.comentaris --> array de comentaris 
 
     if (num >= 0 && num < MAX_COM) {
-        tas->comentaris[num - 1] = ""; // S'HAN DE MOURE ELS RESTANTS n-1 POS TODO
+        
+        int i=0;
+        
+        for (i = num; i < MAX_COM-1; i++)
+            tas->comentaris[i-1] = tas->comentaris[i];        
+        
         tas->ncomentaris--;
-        printf("Comentari inserit correctament. \n");
+        printf("Comentari eliminat correctament. \n");
         return(0);
     }
     else{
