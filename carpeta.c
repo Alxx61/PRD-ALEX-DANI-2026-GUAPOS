@@ -71,18 +71,78 @@ t_data * cerca_data(t_carpeta *car, t_data data){
 
 int insereix_nova_data(t_carpeta *car, t_data data){
 
+    int i, pos, estat = 0;
+    
+    for (i = 0; i < car->ndates; i++){
+    
+        if (estat = 0 && data.data <= car->dates[i].data){
+            pos = i;
+            estat = 1; 
+        }
+    }
+    if ((car->ndates + 1) > MAX_DAT){
+        return -1;
+    }else{
+    
+    for (i = car->ndates; i > pos; i--){
+        car->dates[i+1] = car->dates[i];
+    }
+    car->dates[pos] = data;
+    car->ndates++;
+    return 0;
+    
+    }
 }
 
 int insereix_nova_tasca(t_data *data, t_tasca tas){
 
+    int i, pos, estat = 0;
+    
+    for (i = 0; i < data->ntasques; i++){
+    
+        if (estat = 0 && tas.prioritat <= data->pendents[i].prioritat){
+            pos = i;
+            estat = 1; 
+        }
+    }
+    
+    if ((data->ntasques + 1) > MAX_TAS){
+        return -1;
+    }else{
+    
+    for (i = data->ntasques; i > pos; i--){
+        data->pendents[i+1] = data->pendents[i];
+    }
+    data->pendents[pos] = tas;
+    data->ntasques++;
+    return 0;
+    }
 }
 
 t_tasca * cerca_tasca(t_data *data, char titol[MAX_C]){
 
+    int i;
+    
+    for (i = 0; i < data->ntasques; i++){
+        if (strcmp(data->pendents[i].titol, titol) == 0){
+            return (&data->pendents[i]);
+        
+        }
+    }
+    return NULL;
 }
 
 int elimina_tasca(t_data *data, char titol[MAX_C]){
 
+    int i, pos;
+    for (i = 0; i < data->ntasques; i++){
+    
+        if (strcmp(cerca_tasca(*data, titol)->titol, titol) == 0){
+            pos = i;
+        }
+    }
+    
+    data->pendents[pos] = 0; 
 }
 
 int neteja_dates_buides(t_carpeta *car){
