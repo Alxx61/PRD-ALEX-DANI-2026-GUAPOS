@@ -34,7 +34,7 @@ void mostra_data(t_data data){
 t_carpeta llegeix_nova_carpeta(){
     t_carpeta carpeta;
     char titol[MAX_C];
-    printf("Introdueix el titol de la nova carpeta: ");
+    printf("\nIntrodueix el titol de la nova carpeta: ");
     fgets(titol, MAX_C, stdin);
     
     strcpy(carpeta.titol, titol);
@@ -153,7 +153,7 @@ int neteja_dates_buides(t_carpeta *car){
     for (i = 0; i < car->ndates; i++){
         if (car->dates[i].ntasques == 0){
         
-            for (j = i; j < car->ndates; j++){
+            for (j = i - 1; j < car->ndates; j++){
                 car->dates[j] = car->dates[j+1];
             }
             
