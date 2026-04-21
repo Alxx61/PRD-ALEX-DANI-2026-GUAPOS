@@ -24,7 +24,7 @@ void mostra_data(t_data data){
     mes = (data.data / 100) % 100;
     dia = data.data % 100;
     
-    printf("%d/%d/%d\n", dia, mes, any);
+    printf("%.2d/%.2d/%d\n", dia, mes, any);
     
     for (i = 0; i < data.ntasques; i++){
         mostra_tasca(data.pendents[i]);
@@ -38,7 +38,7 @@ t_carpeta llegeix_nova_carpeta(){
     fgets(titol, MAX_C, stdin);
     
     strcpy(carpeta.titol, titol);
-    
+    printf("Carpeta inserida correctament.");
     return carpeta;
 }
 
@@ -71,21 +71,18 @@ t_data * cerca_data(t_carpeta *car, t_data data){
 
 int insereix_nova_data(t_carpeta *car, t_data data){
 
-    int i, pos, estat = 0;
+    int i, pos = 0;
     
-    for (i = 0; i < car->ndates; i++){
-    
-        if (estat = 0 && data.data <= car->dates[i].data){
-            pos = i;
-            estat = 1; 
-        }
-    }
-    if ((car->ndates + 1) > MAX_DAT){
+    if (car->ndates >= MAX_DAT){
         return -1;
     }else{
+        
+        while(pos < car->ndates && car->dates[pos].data < data.data){
+            pos++;
+        }
     
     for (i = car->ndates; i > pos; i--){
-        car->dates[i+1] = car->dates[i];
+        car->dates[i] = car->dates[i - 1];
     }
     car->dates[pos] = data;
     car->ndates++;
@@ -96,27 +93,23 @@ int insereix_nova_data(t_carpeta *car, t_data data){
 
 int insereix_nova_tasca(t_data *data, t_tasca tas){
 
-    int i, pos, estat = 0;
+    int i, pos = 0;
     
-    for (i = 0; i < data->ntasques; i++){
-    
-        if (estat = 0 && tas.prioritat <= data->pendents[i].prioritat){
-            pos = i;
-            estat = 1; 
-        }
-    }
-    
-    if ((data->ntasques + 1) > MAX_TAS){
+    if (data->ntasques > MAX_TAS){
         return -1;
     }else{
+        
+        while(pos < data->ntasques && data->pendents[pos].prioritat > tas.prioritat){
+            pos++;
+        }
     
-    for (i = data->ntasques; i > pos; i--){
-        data->pendents[i+1] = data->pendents[i];
-    }
-    data->pendents[pos] = tas;
-    data->ntasques++;
-    return 0;
-    }
+        for (i = data->ntasques; i > pos; i--){
+            data->pendents[i] = data->pendents[i - 1];
+        }
+        data->pendents[pos] = tas;
+        data->ntasques++;
+        return 0;
+        }
 }
 
 t_tasca * cerca_tasca(t_data *data, char titol[MAX_C]){
@@ -137,7 +130,7 @@ int elimina_tasca(t_data *data, char titol[MAX_C]){
     int i, pos, estat = 0;
     for (i = 0; i < data->ntasques; i++){
     
-        if (strcmp(cerca_tasca(*data, titol)->titol, titol) == 0){
+        if (strcmp(cerca_tasca(data, titol)->titol, titol) == 0){
             pos = i;
             estat = 1;
         }
@@ -146,11 +139,10 @@ int elimina_tasca(t_data *data, char titol[MAX_C]){
         return -1;
     }else{
     
-    
-    
-    for (i = pos; i < data->ntasques; i++){
+    for (i = pos - 1; i < data->ntasques; i++){
         data->pendents[i] = data->pendents[i+1];
     }
+    data->ntasques--;
     return 0;
     }  
 }
@@ -164,10 +156,12 @@ int neteja_dates_buides(t_carpeta *car){
             for (j = i; j < car->ndates; j++){
                 car->dates[j] = car->dates[j+1];
             }
-            car->ndates--;
+            
             elim++;
         }
     }
+    
+    car->ndates = car->ndates - elim;
     
     return elim;
 }
