@@ -1,4 +1,6 @@
 #include "tasca.h"
+#include "carpeta.h"
+#include "organitzador.h"
 #include <stdio.h>
 #include <stdint.h>
 
@@ -97,7 +99,7 @@ void tests_carpeta2_1() {
     if (estat == 0)
         printf("Eliminat amb éxit\n");
     else
-        printf("Error al eliminar\n")  
+        printf("Error al eliminar\n");  
     mostra_carpeta(carpeta);
 
 }
