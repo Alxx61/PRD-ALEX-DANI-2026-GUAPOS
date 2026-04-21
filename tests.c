@@ -123,9 +123,59 @@ void tests_carpeta3(){
     
     neteja_dates_buides(&carpeta);
     mostra_carpeta(carpeta);    
+    
+}
 
+void tests_organitzador1(){
+
+    t_organitzador arxiu;
+    t_carpeta carpeta1, carpeta2, carpeta3;
+    char titol[MAX_C];
+     
+    carpeta1 = llegeix_nova_carpeta();
+    carpeta2 = llegeix_nova_carpeta();
+    carpeta3 = llegeix_nova_carpeta();
     
+    insereix_nova_carpeta(&arxiu, carpeta1);
+    insereix_nova_carpeta(&arxiu, carpeta2);
+    insereix_nova_carpeta(&arxiu, carpeta3);
     
+    mostra_carpetes(&arxiu);
+    printf("Introdueix el titol de la carpeta que vols mostrar: ");
+    fgets(titol, MAX_C ,stdin);
     
+    mostra_contingut_carpeta(&arxiu,titol);
     
+}
+
+void tests_organitzador2(){
+
+    t_organitzador arxiu;
+    t_carpeta carpeta1, carpeta2, carpeta3;
+    t_data data1, data2;
+    char titol[MAX_C];
+     
+    carpeta1 = llegeix_nova_carpeta();
+    carpeta2 = llegeix_nova_carpeta();
+    carpeta3 = llegeix_nova_carpeta();
+    
+    data1 = llegeix_nova_data();
+    data2 = llegeix_nova_data();
+    
+    insereix_nova_data(&carpeta1, data1);
+    insereix_nova_data(&carpeta1, data2);
+    
+    insereix_nova_carpeta(&arxiu, carpeta1);
+    insereix_nova_carpeta(&arxiu, carpeta2);
+    insereix_nova_carpeta(&arxiu, carpeta3);
+    
+    mostra_carpetes(&arxiu);
+    printf("Introdueix el titol de la carpeta que vols eliminar: ");
+    fgets(titol, MAX_C ,stdin);
+    
+    elimina_carpeta(&arxiu, titol);
+    mostra_carpetes(&arxiu);
+    
+    neteja_dates_buides(&carpeta1);
+    mostra_contingut_carpeta(&arxiu, carpeta1.titol);
 }
