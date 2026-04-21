@@ -134,13 +134,17 @@ t_tasca * cerca_tasca(t_data *data, char titol[MAX_C]){
 
 int elimina_tasca(t_data *data, char titol[MAX_C]){
 
-    int i, pos;
+    int i, pos, estat = 0;
     for (i = 0; i < data->ntasques; i++){
     
         if (strcmp(cerca_tasca(*data, titol)->titol, titol) == 0){
             pos = i;
+            estat = 1;
         }
     }
+    if (estat == 0){
+        return -1;
+    }else{
     
     
     
@@ -148,11 +152,23 @@ int elimina_tasca(t_data *data, char titol[MAX_C]){
         data->pendents[i] = data->pendents[i+1];
     }
     return 0;
-    
-    
+    }  
 }
 
 int neteja_dates_buides(t_carpeta *car){
+    int i, j, elim = 0;
     
+    for (i = 0; i < car->ndates; i++){
+        if (car->dates[i].ntasques == 0){
+        
+            for (j = i; j < car->ndates; j++){
+                car->dates[j] = car->dates[j+1];
+            }
+            car->ndates--;
+            elim++;
+        }
+    }
+    
+    return elim;
 }
 
