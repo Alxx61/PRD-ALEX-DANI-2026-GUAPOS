@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "main.h"
+#include "tests.h"
 
 int main(int argc, char** argv)
 {
@@ -21,7 +22,7 @@ int main(int argc, char** argv)
     /* Completar codi de la funció main() */
     
     printf("Finalitzant l'aplicacio... Adeu!\n");
-    return (EXIT_SUCCESS);
+    return (EXIT_SUCCESS); 
 }
 
 void mostrar_ajuda()
