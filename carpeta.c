@@ -142,10 +142,17 @@ int elimina_tasca(t_data *data, char titol[MAX_C]){
         }
     }
     
-    data->pendents[pos] = 0; 
+    
+    
+    for (i = pos; i < data->ntasques; i++){
+        data->pendents[i] = data->pendents[i+1];
+    }
+    return 0;
+    
+    
 }
 
 int neteja_dates_buides(t_carpeta *car){
-
+    
 }
 
