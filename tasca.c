@@ -10,11 +10,15 @@ t_comentari llegeix_nou_comentari(){
     
     fgets(comentari.text, MAX_C, stdin);
     
-    if (strlen(comentari.text) > MAX_C){
+    while (strlen(comentari.text) > MAX_C){
         printf("Masses caracters (Màxim 100)\n");
-    }else{
-        return comentari;
+        fgets(comentari.text, MAX_C, stdin);
     }
+    
+    comentari.text[strlen(comentari.text)-1] = '\0';
+    
+    return comentari;
+    
 }
 
 
@@ -27,24 +31,26 @@ t_tasca llegeix_nova_tasca(){
     t_tasca tasca;
     printf("\nTitol de la nova tasca: ");
     fgets(tasca.titol,MAX_C,stdin); 
+    tasca.titol[strlen(tasca.titol)-1] = '\0';
     printf("\nPrioritat de la nova tasca (entre [1,3]): ");
     scanf("%d%*c",&tasca.prioritat);
-    while (tasca.prioritat <= 0 || tasca.prioritat >= 4){
-        printf("\nValor incorrecte, introdueix un nou valor: ");
+    while (tasca.prioritat < MIN_PRI || tasca.prioritat > MAX_PRI){
+        printf("\nValor erroni, torna-hi: ");
         scanf("%d%*c",&tasca.prioritat);
         
     }
-    tasca.ncomentaris = 0;
-    printf("Tasca inserida correctament. \n");
+    tasca.ncomentaris = 0;  
     return(tasca);
 }
 
 void mostra_tasca(t_tasca tas){
     
     int i; 
-    printf("Nom de la tasca: %s\n",tas.titol);
+    printf("Titol de la tasca: %s\n",tas.titol);
     printf("Prioritat de la tasca: %d\n",tas.prioritat);
+    
     if (tas.ncomentaris > 0){
+        printf("Comentaris: \n");
         for (i = 0; i < tas.ncomentaris; i++)
             printf("%d. %s\n",i+1,tas.comentaris[i].text);
         
@@ -54,14 +60,16 @@ void mostra_tasca(t_tasca tas){
 }
 
 int insereix_comentari(t_tasca *tas, t_comentari com){
+    
+    int i;
     if (tas->ncomentaris < MAX_COM) {
-        tas->comentaris[tas->ncomentaris] = com;
+        for (i = tas->ncomentaris - 1; i >= 0; i--)
+            tas->comentaris[i+1] = tas->comentaris[i];
+        tas->comentaris[0] = com;
         tas->ncomentaris++;
-        printf("Comentari inserit correctament. \n");
         return (0);
     }
     else{
-        printf("No s'ha pogut inserir el comentari");
         return(-1); 
     }
 }
@@ -70,17 +78,14 @@ int elimina_comentari(t_tasca *tas, int num){ //tasca.comentaris --> array de co
 
     
     int i = 0;
-    while (num <= 0 || num > MAX_COM) {
-
-        printf("\nValor incorrecte, trii un nou valor: ");
-        scanf("%d%*c",&num);
+    if (num <= 0 || num > tas->ncomentaris) {
+        return(-1);
     }
 
-    for (i = num; i < MAX_COM - 1; i++)
+    for (i = num; i < tas->ncomentaris; i++)
         tas->comentaris[i - 1] = tas->comentaris[i];
 
     tas->ncomentaris--;
-    printf("Comentari eliminat correctament. \n");
     return (0);
 
 
