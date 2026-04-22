@@ -38,7 +38,6 @@ t_carpeta llegeix_nova_carpeta(){
     fgets(titol, MAX_C, stdin);
     
     strcpy(carpeta.titol, titol);
-    printf("Carpeta inserida correctament.");
     return carpeta;
 }
 
