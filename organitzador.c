@@ -60,31 +60,21 @@ int insereix_nova_carpeta(t_organitzador *org, t_carpeta car) {
 void mostra_carpetes(t_organitzador *org){
     int i;
     for (i=0;i < org->ncarpetes;i++){
-        printf("Nom de la carpeta %d: %s\n",i,org->carpetes[i].titol);
+        printf("%s\n", org->carpetes[i].titol);
     }
 
 }
 void mostra_contingut_carpeta(t_organitzador *org, char titol[MAX_C]){
 
     int i,j,k,co=0;
+    t_carpeta *car;
     
-    for (i=0 ;i < org->ncarpetes;i++){
-        if (strcmp(org->carpetes[i].titol, titol) == 0){
-            printf("%s\n",titol);
-            printf("Dates: \n");
-            for (j=0; j< org->carpetes[i].ndates;j++){
-                mostra_data(org->carpetes[i].dates[j]);
-  
-            }
-        }  
-        
-    }
-    for (k=0; k < org->ncarpetes;k++){ 
-        if (strcmp(org->carpetes[k].titol, titol) == 0)
-            co++;
-    }
-    if (co == 0)
-        printf("No s'ha trobat la carpeta\n");
+    car = cerca_carpeta(org,titol);
+    
+    if (car == NULL)
+        printf("Carpeta no trobada.\n");
+    else
+        mostra_carpeta(*car);
 
 }
 void neteja_dates_buides_carpetes(t_organitzador *org){
@@ -92,7 +82,8 @@ void neteja_dates_buides_carpetes(t_organitzador *org){
     
     for (i=0;i<org->ncarpetes;i++){
         counter = neteja_dates_buides(&org->carpetes[i]);
-        printf("Nombre de dates eliminades a %s: %d\n",org->carpetes[i].titol,counter);
+        printf("Carpeta: %s\n", org->carpetes[i].titol);
+        printf("%d dates eliminades.\n", counter);
         
         
     }
@@ -107,7 +98,7 @@ void neteja_dates_buides_carpetes(t_organitzador *org){
 int elimina_carpeta(t_organitzador *org, char titol[MAX_C]){
     int j,i=0,index = -1;
     
-    for (i=0; i < org->ncarpetes;i++){ /*Troba el index de eliminar */
+    for (i=0; i < org->ncarpetes;i++){ /*troba el index de eliminar */
         if (strcmp(org->carpetes[i].titol, titol) == 0)
             index = i;
     }
