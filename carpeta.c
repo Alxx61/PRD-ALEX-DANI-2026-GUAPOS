@@ -24,7 +24,7 @@ void mostra_data(t_data data){
     mes = (data.data / 100) % 100;
     dia = data.data % 100;
     
-    printf("%.2d/%.2d/%d\n", dia, mes, any);
+    printf("%02d/%02d/%04d\n", dia, mes, any);
     
     for (i = 0; i < data.ntasques; i++){
         mostra_tasca(data.pendents[i]);
