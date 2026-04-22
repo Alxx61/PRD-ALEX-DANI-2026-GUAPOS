@@ -83,3 +83,51 @@ void processa_opcio_nova_data (t_organitzador *org){
     
 }
 
+
+
+void processa_opcio_mostra_carpetes(t_organitzador *org){
+    int i=0;    
+    if (org->ncarpetes>0){
+        for (i=0;i<org->ncarpetes;i++)
+            printf("%s",org->carpetes[i].titol);
+        
+    }    
+}
+void processa_opcio_nova_tasca(t_organitzador *org){
+    
+    
+
+    
+    
+}
+void processa_opcio_insereix_comentari(t_organitzador *org){
+
+    
+    
+}
+void processa_opcio_mostra_carpeta(t_organitzador *org){
+    char nom[MAX_C];
+    llegeix_text(nom);
+    mostra_carpeta(*cerca_carpeta(org, nom));
+
+        
+    
+}
+void processa_opcio_elimina_tasca(t_organitzador *org){
+
+
+
+}
+void processa_opcio_neteja_dates_buides(t_organitzador *org){
+
+    
+    
+    
+}
+void processa_opcio_elimina_carpeta(t_organitzador *org){
+
+    
+    
+    
+}
+
