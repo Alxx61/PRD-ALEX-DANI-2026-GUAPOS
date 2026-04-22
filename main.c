@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "main.h"
+#include "carpeta.h"
+#include "organitzador.h"
+#include "tasca.h"
 #include "tests.h"
 
 int main(int argc, char** argv)
@@ -20,6 +23,8 @@ int main(int argc, char** argv)
     printf("***********************************************\n\n");
     
     /* Completar codi de la funció main() */
+    t_organitzador *org;
+    processa_opcio_nova_data(&org);
     
     printf("Finalitzant l'aplicacio... Adeu!\n");
     return (EXIT_SUCCESS); 
@@ -46,5 +51,35 @@ void llegeix_text(char text[MAX_C])
     fgets(text, MAX_C, stdin);
     if (strlen(text) > 0)
         text[strlen(text)-1] = '\0';
+}
+
+void processa_opcio_nova_carpeta(t_organitzador *org){
+    
+    t_carpeta carpeta;
+    carpeta = llegeix_nova_carpeta();
+    
+    if (!cerca_carpeta(org, carpeta.titol)){
+        if (insereix_nova_carpeta(org, carpeta) == 0){
+            printf("Carpeta inserida correctament.");
+        }else{
+            printf("L'organitzador està ple.");
+        }
+    }else{
+        printf("Ja existeix la carpeta amb aquest titol.");
+    }  
+}
+
+void processa_opcio_nova_data (t_organitzador *org){
+
+    t_data data;
+    t_carpeta *carpeta;
+    char titol[MAX_C];
+    
+    printf("Titol de la carpeta: ");
+    llegeix_text(titol);
+    
+    if(!cerca_carpeta(org, titol))
+    carpeta = cerca_carpeta(org, titol);
+    
 }
 
