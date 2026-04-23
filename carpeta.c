@@ -94,7 +94,7 @@ int insereix_nova_tasca(t_data *data, t_tasca tas){
 
     int i, pos = 0;
     
-    if (data->ntasques > MAX_TAS){
+    if (data->ntasques >= MAX_TAS){
         return -1;
     }else{
         
