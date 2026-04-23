@@ -35,7 +35,7 @@ t_carpeta llegeix_nova_carpeta(){
     t_carpeta carpeta;
     char titol[MAX_C];
     printf("\nIntrodueix el titol de la nova carpeta: ");
-    fgets(titol, MAX_C, stdin);
+    llegeix_text(titol);
     
     strcpy(carpeta.titol, titol);
     return carpeta;
