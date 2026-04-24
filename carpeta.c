@@ -8,7 +8,7 @@ t_data llegeix_nova_data(){
 
     int dia, mes, any, data;
     t_data c_data;
-    printf("\nData (format: dd/mm/aaaa): ");
+    printf("Data (format: dd/mm/aaaa): ");
     scanf("%d/%d/%d%*c", &dia, &mes, &any);
     
     data = any*10000 + mes*100 + dia;
@@ -35,7 +35,7 @@ void mostra_data(t_data data){
 t_carpeta llegeix_nova_carpeta(){
     t_carpeta carpeta;
     char titol[MAX_C];
-    printf("\nTitol de la nova carpeta: ");
+    printf("Titol de la nova carpeta: ");
     llegeix_text(titol);
     carpeta.ndates = 0;
     
@@ -47,7 +47,7 @@ void mostra_carpeta(t_carpeta car){
     int i;
     
     printf("\n%s", car.titol);
-    printf("\nDates:");
+    printf("\nDates:\n");
     
     for (i = 0; i < car.ndates; i++){
         mostra_data(car.dates[i]);

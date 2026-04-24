@@ -6,7 +6,7 @@
 t_comentari llegeix_nou_comentari(){
 
     t_comentari comentari;
-    printf("\nText del nou comentari: ");
+    printf("Text del nou comentari: ");
     
     fgets(comentari.text, MAX_C, stdin);
     
@@ -29,13 +29,13 @@ void mostra_comentari(t_comentari com){
 
 t_tasca llegeix_nova_tasca(){
     t_tasca tasca;
-    printf("\nTitol de la nova tasca: ");
+    printf("Titol de la nova tasca: ");
     fgets(tasca.titol,MAX_C,stdin); 
     tasca.titol[strlen(tasca.titol)-1] = '\0';
-    printf("\nPrioritat de la nova tasca (entre [1,3]): ");
+    printf("Prioritat de la nova tasca (entre [1,3]): ");
     scanf("%d%*c",&tasca.prioritat);
     while (tasca.prioritat < MIN_PRI || tasca.prioritat > MAX_PRI){
-        printf("\nValor erroni, torna-hi.\nPrioritat de la nova tasca (entre [1,3]): ");
+        printf("Valor erroni, torna-hi.\nPrioritat de la nova tasca (entre [1,3]): ");
         scanf("%d%*c",&tasca.prioritat);
         
     }

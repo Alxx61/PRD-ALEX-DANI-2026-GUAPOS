@@ -54,12 +54,14 @@ int main(int argc, char** argv)
         
         else if ((op=='a')||(op=='A'))
             mostrar_ajuda();
-        else
-            printf("Opcio incorrecta. Torna a intentar-ho.");
+        else if ((op=='f')||(op=='F')){
+            printf("Finalitzant l'aplicacio... Adeu!\n");
+            return (EXIT_SUCCESS); }
+        else 
+            printf("Opcio incorrecta. Torna a intentar-ho.\n");
                 
     }
-    printf("Finalitzant l'aplicacio... Adeu!\n");
-    return (EXIT_SUCCESS); 
+   
 }
 
 void mostrar_ajuda()
@@ -97,7 +99,7 @@ void processa_opcio_nova_carpeta(t_organitzador *org){  /*FUNCIONA*/
             printf("L'organitzador està ple.\n");
         }
     }else{
-        printf("Ja existeix la carpeta amb aquest titol.");
+        printf("Ja existeix la carpeta amb aquest titol.\n");
     }  
 }
 
@@ -124,7 +126,7 @@ void processa_opcio_nova_data (t_organitzador *org){    /*FUNCIONA*/
                 printf("La carpeta esta plena.\n");
             }
         }else{
-            printf("Ja existeix la data a la carpeta.");
+            printf("Ja existeix la data a la carpeta.\n");
         }
     }
     
@@ -259,7 +261,7 @@ void processa_opcio_elimina_tasca(t_organitzador *org){ /*PER PROVAR*/
     llegeix_text(titolc);
     carpeta = cerca_carpeta(org,titolc);
     if (carpeta == NULL){
-        printf("\nCarpeta no trobada\n");
+        printf("Carpeta no trobada\n");
     }
     else{
         data = llegeix_nova_data();
@@ -294,10 +296,10 @@ void processa_opcio_elimina_carpeta(t_organitzador *org) {/*PER PROBAR*/
     llegeix_text(titolc);
     carpeta = cerca_carpeta(org, titolc);
     if (carpeta == NULL) {
-        printf("\nCarpeta no trobada\n");
+        printf("Carpeta no trobada\n");
     } else {
         if (elimina_carpeta(org, titolc) == 0)
-            printf("Carpeta eliminada correctament.");
+            printf("Carpeta eliminada correctament.\n");
 
     }
 }
