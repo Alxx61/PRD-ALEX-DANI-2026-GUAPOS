@@ -24,7 +24,7 @@ void mostra_data(t_data data){
     mes = (data.data / 100) % 100;
     dia = data.data % 100;
     
-    printf("%02d/%02d/%04d\n", dia, mes, any);
+    printf("Data: %02d/%02d/%04d\n", dia, mes, any);
     
     for (i = 0; i < data.ntasques; i++){
         mostra_tasca(data.pendents[i]);
@@ -44,8 +44,8 @@ t_carpeta llegeix_nova_carpeta(){
 void mostra_carpeta(t_carpeta car){
     int i;
     
-    printf("\nTitol de la carpeta: %s", car.titol);
-    
+    printf("\n%s", car.titol);
+    printf("\nDates:");
     
     for (i = 0; i < car.ndates; i++){
         mostra_data(car.dates[i]);
