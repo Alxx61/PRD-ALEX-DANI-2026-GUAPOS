@@ -104,6 +104,7 @@ void processa_opcio_nova_carpeta(t_organitzador *org){  /*FUNCIONA*/
 void processa_opcio_nova_data (t_organitzador *org){    /*FUNCIONA*/
 
     t_data data;
+    t_data *p_data = NULL;
     t_carpeta *carpeta;
     char titol[MAX_C];
     
@@ -115,11 +116,15 @@ void processa_opcio_nova_data (t_organitzador *org){    /*FUNCIONA*/
         printf("Carpeta no trobada.\n");
     }else{
         data = llegeix_nova_data();
-        
-        if (insereix_nova_data(carpeta, data) == 0){
-            printf("Data inserida correctament.\n");
+        p_data = cerca_data(carpeta, data);
+        if (p_data == NULL){
+            if (insereix_nova_data(carpeta, data) == 0){
+                printf("Data inserida correctament.\n");
+            }else{
+                printf("La carpeta esta plena.\n");
+            }
         }else{
-            printf("La carpeta esta plena.\n");
+            printf("Ja existeix la data a la carpeta.");
         }
     }
     
