@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 
 
     while ((op != 'F') && (op != 'f')){
-        printf("Introdueix una nova opcio: ");
+        printf("\nIntrodueix una nova opcio: ");
         scanf("%c%*c",&op);
         if ((op=='N')||(op=='n'))
             processa_opcio_nova_carpeta(&org);
