@@ -35,7 +35,7 @@ t_tasca llegeix_nova_tasca(){
     printf("\nPrioritat de la nova tasca (entre [1,3]): ");
     scanf("%d%*c",&tasca.prioritat);
     while (tasca.prioritat < MIN_PRI || tasca.prioritat > MAX_PRI){
-        printf("\nValor erroni, torna-hi: ");
+        printf("\nValor erroni, torna-hi.\nPrioritat de la nova tasca (entre [1,3]): ");
         scanf("%d%*c",&tasca.prioritat);
         
     }
