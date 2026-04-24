@@ -14,8 +14,8 @@ t_comentari llegeix_nou_comentari(){
         printf("Masses caracters (Màxim 100)\n");
         fgets(comentari.text, MAX_C, stdin);
     }
-    
-    comentari.text[strlen(comentari.text)-1] = '\0';
+    if (strlen(comentari.text) > 0)
+        comentari.text[strlen(comentari.text)-1] = '\0';
     
     return comentari;
     
@@ -31,7 +31,8 @@ t_tasca llegeix_nova_tasca(){
     t_tasca tasca;
     printf("\nTitol de la nova tasca: ");
     fgets(tasca.titol,MAX_C,stdin); 
-    tasca.titol[strlen(tasca.titol)-1] = '\0';
+    if (strlen(tasca.titol)>0)
+        tasca.titol[strlen(tasca.titol)-1] = '\0';
     printf("\nPrioritat de la nova tasca (entre [1,3]): ");
     scanf("%d%*c",&tasca.prioritat);
     while (tasca.prioritat < MIN_PRI || tasca.prioritat > MAX_PRI){
