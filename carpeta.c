@@ -14,6 +14,7 @@ t_data llegeix_nova_data(){
     data = any*10000 + mes*100 + dia;
     
     c_data.data = data;
+    c_data.ntasques = 0;
     return c_data;
 }
 
