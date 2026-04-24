@@ -54,6 +54,8 @@ int main(int argc, char** argv)
         
         else if ((op=='a')||(op=='A'))
             mostrar_ajuda();
+        else
+            printf("Opcio incorrecta. Torna a intentar-ho.");
                 
     }
     printf("Finalitzant l'aplicacio... Adeu!\n");
@@ -140,7 +142,7 @@ void processa_opcio_nova_tasca(t_organitzador *org){    /*FUNCIONA*/
         printf("Carpeta no trobada.\n");
     }else{
         
-        while (p_data == NULL){
+        
             data = llegeix_nova_data();
 
             p_data = cerca_data(carpeta, data);
@@ -157,7 +159,7 @@ void processa_opcio_nova_tasca(t_organitzador *org){    /*FUNCIONA*/
                     printf("La data esta plena.\n");
                 }
             }
-        }
+        
     }
 
     
@@ -182,14 +184,14 @@ void processa_opcio_insereix_comentari(t_organitzador *org){    /*FUNCIONA*/
         printf("Carpeta no trobada.\n");
     }else{
         
-        while (p_data == NULL){
+        
             data = llegeix_nova_data();
             p_data = cerca_data(carpeta, data);
 
             if (p_data == NULL){
                 printf("Data no trobada.\n");
             }else{
-                while (tasca == NULL){
+                
                     printf("Titol de la tasca: ");
                     llegeix_text(titol_t);
 
@@ -205,9 +207,9 @@ void processa_opcio_insereix_comentari(t_organitzador *org){    /*FUNCIONA*/
                             printf("La tasca esta plena.\n");
                         }
                     }
-                }
+                
             }
-        }
+        
     }
 
     
