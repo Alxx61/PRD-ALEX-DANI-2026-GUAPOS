@@ -15,7 +15,7 @@
 
 int main(int argc, char** argv)
 {
-    char op='a ';
+    char op='\0';
     
     printf("***********************************************\n");
     printf("*      ORGANITZADOR DE TASQUES PENDENTS       *\n");
@@ -24,7 +24,7 @@ int main(int argc, char** argv)
     printf("***********************************************\n\n");
     
     /* Completar codi de la funció main() */
-    t_organitzador org;
+    t_organitzador org = {0};
     mostrar_ajuda();
 
 
@@ -56,11 +56,6 @@ int main(int argc, char** argv)
             mostrar_ajuda();
                 
     }
-
-    
-    
-    
-    
     printf("Finalitzant l'aplicacio... Adeu!\n");
     return (EXIT_SUCCESS); 
 }
@@ -116,7 +111,6 @@ void processa_opcio_nova_data (t_organitzador *org){    /*FUNCIONA*/
     
     if (carpeta == NULL){
         printf("Carpeta no trobada.\n");
-        processa_opcio_nova_data(org);
     }else{
         data = llegeix_nova_data();
         
@@ -132,7 +126,7 @@ void processa_opcio_nova_data (t_organitzador *org){    /*FUNCIONA*/
 void processa_opcio_nova_tasca(t_organitzador *org){    /*FUNCIONA*/
     
     t_data data;
-    t_data *p_data;
+    t_data *p_data = NULL;
     t_tasca tasca;
     t_carpeta *carpeta;
     char titol[MAX_C];
@@ -144,7 +138,6 @@ void processa_opcio_nova_tasca(t_organitzador *org){    /*FUNCIONA*/
     
     if (carpeta == NULL){
         printf("Carpeta no trobada.\n");
-        processa_opcio_nova_tasca(org);
     }else{
         
         while (p_data == NULL){
@@ -174,9 +167,9 @@ void processa_opcio_nova_tasca(t_organitzador *org){    /*FUNCIONA*/
 void processa_opcio_insereix_comentari(t_organitzador *org){    /*FUNCIONA*/
 
     t_data data;
-    t_data *p_data;
+    t_data *p_data = NULL;
     t_comentari comentari;
-    t_tasca *tasca;
+    t_tasca *tasca = NULL;
     t_carpeta *carpeta;
     char titol_t[MAX_C];
     char titol_c[MAX_C];
@@ -187,7 +180,6 @@ void processa_opcio_insereix_comentari(t_organitzador *org){    /*FUNCIONA*/
     
     if (carpeta == NULL){
         printf("Carpeta no trobada.\n");
-        processa_opcio_insereix_comentari(org);
     }else{
         
         while (p_data == NULL){
@@ -233,14 +225,19 @@ void processa_opcio_mostra_carpetes(t_organitzador *org){   /*FUNCIONA*/
     }    
 }
 
-void processa_opcio_mostra_carpeta(t_organitzador *org){ /*PER PROVAR*/
+void processa_opcio_mostra_carpeta(t_organitzador *org) { /*PER PROVAR*/
     char nom[MAX_C];
+    t_carpeta *car = NULL;
     printf("Titol de la carpeta: ");
     llegeix_text(nom);
-    
-    mostra_carpeta(*cerca_carpeta(org, nom));
+    car = cerca_carpeta(org, nom);
+    if (car == NULL)
+        printf("Carpeta no trobada.\n");
+    else
+        mostra_carpeta(*car);
 
-    
+
+
 }
 
 
@@ -252,7 +249,7 @@ void processa_opcio_elimina_tasca(t_organitzador *org){ /*PER PROVAR*/
     t_carpeta *carpeta;
     char titolc[MAX_C],titolt[MAX_C];
     printf("Titol de la carpeta: ");
-    fgets(titolc,MAX_C,stdin);
+    llegeix_text(titolc);
     carpeta = cerca_carpeta(org,titolc);
     if (carpeta == NULL){
         printf("\nCarpeta no trobada\n");
@@ -264,7 +261,7 @@ void processa_opcio_elimina_tasca(t_organitzador *org){ /*PER PROVAR*/
             printf("Data no trobada\n");
         else{
             printf("Nom de la tasca: ");
-            fgets(titolt,MAX_C,stdin);
+            llegeix_text(titolt);
             tasca = cerca_tasca(p_data,titolt);
             if (tasca == NULL)
                 printf("Tasca no trobada\n");
@@ -285,9 +282,9 @@ void processa_opcio_neteja_dates_buides(t_organitzador *org){
 }
 void processa_opcio_elimina_carpeta(t_organitzador *org) {/*PER PROBAR*/
     t_carpeta *carpeta;
-    char titolc[MAX_C], titolt[MAX_C];
+    char titolc[MAX_C];
     printf("Titol de la carpeta: ");
-    fgets(titolc, MAX_C, stdin);
+    llegeix_text(titolc);
     carpeta = cerca_carpeta(org, titolc);
     if (carpeta == NULL) {
         printf("\nCarpeta no trobada\n");
