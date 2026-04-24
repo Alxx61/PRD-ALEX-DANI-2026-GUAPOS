@@ -15,6 +15,7 @@
 
 int main(int argc, char** argv)
 {
+    char op='a ';
     
     printf("***********************************************\n");
     printf("*      ORGANITZADOR DE TASQUES PENDENTS       *\n");
@@ -24,8 +25,38 @@ int main(int argc, char** argv)
     
     /* Completar codi de la funció main() */
     t_organitzador org;
-    processa_opcio_nova_carpeta(&org);
-   
+    mostrar_ajuda();
+
+
+    while ((op != 'F') && (op != 'f')){
+        printf("Introdueix una nova opcio: ");
+        scanf("%c%*c",&op);
+        if ((op=='N')||(op=='n'))
+            processa_opcio_nova_carpeta(&org);
+        else if ((op=='d')||(op=='D'))
+            processa_opcio_nova_data(&org);
+        else if ((op=='t')||(op=='T'))
+            processa_opcio_nova_tasca(&org);
+        else if ((op=='i')||(op=='I'))
+            processa_opcio_insereix_comentari(&org);
+        else if ((op=='s')||(op=='S'))
+            processa_opcio_mostra_carpetes(&org);
+        else if ((op=='m')||(op=='M'))
+            processa_opcio_mostra_carpeta(&org);
+        else if ((op=='e')||(op=='E'))
+            processa_opcio_elimina_tasca(&org);
+        
+        else if ((op=='b')||(op=='B'))
+            processa_opcio_neteja_dates_buides(&org);
+        
+        else if ((op=='c')||(op=='C'))
+            processa_opcio_elimina_carpeta(&org);
+        
+        else if ((op=='a')||(op=='A'))
+            mostrar_ajuda();
+                
+    }
+
     
     
     
@@ -214,21 +245,57 @@ void processa_opcio_mostra_carpeta(t_organitzador *org){ /*PER PROVAR*/
 
 
 
-void processa_opcio_elimina_tasca(t_organitzador *org){
-
-
-
+void processa_opcio_elimina_tasca(t_organitzador *org){ /*PER PROVAR*/
+    t_data data;
+    t_data *p_data;
+    t_tasca *tasca;
+    t_carpeta *carpeta;
+    char titolc[MAX_C],titolt[MAX_C];
+    printf("Titol de la carpeta: ");
+    fgets(titolc,MAX_C,stdin);
+    carpeta = cerca_carpeta(org,titolc);
+    if (carpeta == NULL){
+        printf("\nCarpeta no trobada\n");
+    }
+    else{
+        data = llegeix_nova_data();
+        p_data = cerca_data(carpeta,data);
+        if (p_data == NULL)
+            printf("Data no trobada\n");
+        else{
+            printf("Nom de la tasca: ");
+            fgets(titolt,MAX_C,stdin);
+            tasca = cerca_tasca(p_data,titolt);
+            if (tasca == NULL)
+                printf("Tasca no trobada\n");
+            else{
+                if (elimina_tasca(p_data,titolt) == 0)
+                    printf("Tasca eliminada correctament\n");
+                
+            }
+        } 
+        
+    }
 }
 void processa_opcio_neteja_dates_buides(t_organitzador *org){
 
-    
+    neteja_dates_buides_carpetes(org);
     
     
 }
-void processa_opcio_elimina_carpeta(t_organitzador *org){
+void processa_opcio_elimina_carpeta(t_organitzador *org) {/*PER PROBAR*/
+    t_carpeta *carpeta;
+    char titolc[MAX_C], titolt[MAX_C];
+    printf("Titol de la carpeta: ");
+    fgets(titolc, MAX_C, stdin);
+    carpeta = cerca_carpeta(org, titolc);
+    if (carpeta == NULL) {
+        printf("\nCarpeta no trobada\n");
+    } else {
+        if (elimina_carpeta(org, titolc) == 0)
+            printf("Carpeta eliminada correctament.");
 
-    
-    
-    
+    }
 }
+
 
