@@ -32,7 +32,7 @@ void mostra_data(t_data data){
 }
 
 t_carpeta llegeix_nova_carpeta(){
-    t_carpeta carpeta = {0};
+    t_carpeta carpeta;
     char titol[MAX_C];
     printf("\nIntrodueix el titol de la nova carpeta: ");
     llegeix_text(titol);
@@ -126,18 +126,19 @@ t_tasca * cerca_tasca(t_data *data, char titol[MAX_C]){
 
 int elimina_tasca(t_data *data, char titol[MAX_C]){
 
-    int i, pos = -1;
+    int i, pos, estat = 0;
     for (i = 0; i < data->ntasques; i++){
     
         if (strcmp(cerca_tasca(data, titol)->titol, titol) == 0){
             pos = i;
+            estat = 1;
         }
     }
-    if (pos == -1){
+    if (estat == 0){
         return -1;
     }else{
     
-    for (i = pos; i < data->ntasques; i++){
+    for (i = pos - 1; i < data->ntasques; i++){
         data->pendents[i] = data->pendents[i+1];
     }
     data->ntasques--;
@@ -151,18 +152,15 @@ int neteja_dates_buides(t_carpeta *car){
     for (i = 0; i < car->ndates; i++){
         if (car->dates[i].ntasques == 0){
         
-            for (j = i; j < car->ndates; j++){
+            for (j = i - 1; j < car->ndates; j++){
                 car->dates[j] = car->dates[j+1];
             }
             
             elim++;
-            i--;
         }
-        
     }
     
     car->ndates = car->ndates - elim;
     
     return elim;
 }
-
